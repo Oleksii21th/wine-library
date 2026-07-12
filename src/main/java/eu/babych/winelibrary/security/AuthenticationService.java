@@ -2,6 +2,7 @@ package eu.babych.winelibrary.security;
 
 import eu.babych.winelibrary.dto.UserLoginRequestDto;
 import eu.babych.winelibrary.dto.UserLoginResponseDto;
+import eu.babych.winelibrary.exceptions.LoginFailedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +29,7 @@ public class AuthenticationService {
             System.out.println("Login successful");
             return new UserLoginResponseDto("Login successful");
         } catch (BadCredentialsException ex) {
-            throw new RuntimeException("failed");
+            throw new LoginFailedException();
         }
     }
 }
