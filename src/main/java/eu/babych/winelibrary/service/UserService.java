@@ -1,8 +1,8 @@
 package eu.babych.winelibrary.service;
 
-import eu.babych.winelibrary.dto.UserLoginRequestDto;
-import eu.babych.winelibrary.dto.UserLoginResponseDto;
+import eu.babych.winelibrary.dto.UserRegistrationRequestDto;
+import eu.babych.winelibrary.dto.UserRegistrationResponseDto;
 
 public interface UserService {
-    UserLoginResponseDto register(UserLoginRequestDto user);
+    UserRegistrationResponseDto register(UserRegistrationRequestDto registrationRequestDto);
 }

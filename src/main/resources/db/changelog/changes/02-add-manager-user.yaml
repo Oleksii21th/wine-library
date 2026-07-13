@@ -18,6 +18,9 @@ databaseChangeLog:
                   name: full_name
                   value: "Admin"
               - column:
+                  name: birth_date
+                  valueDate: "2005-01-01"
+              - column:
                   name: password
                   value: "$2a$12$RXKgBECUCPf1bf.8J2jShuaer63b8EVFpXu30pA.9ZZkykZc1HoBC"
               - column:
