@@ -1,9 +1,10 @@
-package eu.babych.winelibrary.exceptions;
+package eu.babych.winelibrary.exception;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.security.auth.login.LoginException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.BAD_REQUEST);
-        List<String> mappedErrors = ex.getBindingResult().getAllErrors().stream()
-                .map(this::getErrorMessage)
-                .toList();
+        Map<String, List<String>> mappedErrors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .collect(Collectors.groupingBy(
+                        FieldError::getField,
+                        LinkedHashMap::new,
+                        Collectors.mapping(
+                                FieldError::getDefaultMessage,
+                                Collectors.toList())));
         body.put("errors", mappedErrors);
 
         return new ResponseEntity<>(body, headers, status);
