@@ -50,7 +50,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({UserAlreadyExistsRegistrationException.class})
-    protected ResponseEntity<Object> handleRegistration(UserAlreadyExistsRegistrationException ex) {
+    protected ResponseEntity<Object> handleRegistrationException(UserAlreadyExistsRegistrationException ex) {
         return buildErrorResponse(ex, HttpStatus.BAD_REQUEST);
     }
 
