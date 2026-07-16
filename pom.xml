@@ -15,6 +15,7 @@
 		<java.version>17</java.version>
 		<mysql.version>8.0.33</mysql.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
+		<jwt.version>0.13.0</jwt.version>
 		<maven.checkstyle.plugin.version>3.3.0</maven.checkstyle.plugin.version>
 		<maven.checkstyle.plugin.configLocation>
 			checkstyle.xml
@@ -59,6 +60,23 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jwt.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
