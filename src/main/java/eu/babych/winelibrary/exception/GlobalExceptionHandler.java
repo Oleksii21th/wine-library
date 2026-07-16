@@ -49,6 +49,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponse(ex, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler({UserAlreadyExistsRegistrationException.class})
+    protected ResponseEntity<Object> handleRegistration(UserAlreadyExistsRegistrationException ex) {
+        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST);
+    }
+
     private String getErrorMessage(ObjectError objectError) {
         if (objectError instanceof FieldError fieldError) {
             String field = fieldError.getField();
