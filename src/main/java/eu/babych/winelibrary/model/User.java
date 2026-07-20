@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 import lombok.AccessLevel;
@@ -37,9 +36,6 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     private String fullName;
-
-    @Column(nullable = false)
-    private LocalDate birthDate;
 
     @Column(nullable = false)
     private String password;
