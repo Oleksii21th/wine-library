@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javax.security.auth.login.LoginException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -44,8 +43,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, headers, status);
     }
 
-    @ExceptionHandler({LoginException.class})
-    protected ResponseEntity<Object> handleLoginException(LoginException ex) {
+    @ExceptionHandler({LoginFailedException.class})
+    protected ResponseEntity<Object> handleLoginException(LoginFailedException ex) {
         return buildErrorResponse(ex, HttpStatus.UNAUTHORIZED);
     }
 
