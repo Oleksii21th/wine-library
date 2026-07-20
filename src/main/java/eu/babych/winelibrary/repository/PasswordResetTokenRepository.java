@@ -12,4 +12,6 @@ public interface PasswordResetTokenRepository extends
     void deleteByUser(User user);
 
     Optional<PasswordResetToken> findByToken(String token);
+
+    Optional<PasswordResetToken> findByUser(User user);
 }

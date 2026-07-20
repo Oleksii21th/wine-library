@@ -1,5 +1,7 @@
 package eu.babych.winelibrary.exception;
 
+import eu.babych.winelibrary.exception.badrequest.BadRequestException;
+import eu.babych.winelibrary.exception.notfoundexception.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -48,9 +50,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponse(ex, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler({UserAlreadyExistsRegistrationException.class})
-    protected ResponseEntity<Object> handleRegistrationException(
-            UserAlreadyExistsRegistrationException ex) {
+    @ExceptionHandler({EntityNotFoundException.class})
+    public ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
+        return buildErrorResponse(ex, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({BadRequestException.class})
+    protected ResponseEntity<Object> handleBadRequest(BadRequestException ex) {
         return buildErrorResponse(ex, HttpStatus.BAD_REQUEST);
     }
 
