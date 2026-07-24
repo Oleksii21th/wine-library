@@ -1,7 +1,7 @@
 package eu.babych.winelibrary.config;
 
 import eu.babych.winelibrary.security.JwtAuthenticationFilter;
-import eu.babych.winelibrary.service.UserDetailsServiceImpl;
+import eu.babych.winelibrary.service.impl.UserDetailsServiceImpl;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

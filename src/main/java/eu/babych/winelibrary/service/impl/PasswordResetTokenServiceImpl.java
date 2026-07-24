@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.service;
+package eu.babych.winelibrary.service.impl;
 
 import eu.babych.winelibrary.dto.ResetPasswordRequestDto;
 import eu.babych.winelibrary.exception.badrequest.ExpiredTokenException;
@@ -8,6 +8,8 @@ import eu.babych.winelibrary.model.PasswordResetToken;
 import eu.babych.winelibrary.model.User;
 import eu.babych.winelibrary.repository.PasswordResetTokenRepository;
 import eu.babych.winelibrary.repository.UserRepository;
+import eu.babych.winelibrary.service.EmailService;
+import eu.babych.winelibrary.service.PasswordResetTokenService;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;

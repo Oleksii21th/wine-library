@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.service;
+package eu.babych.winelibrary.service.impl;
 
 import eu.babych.winelibrary.dto.UserRegistrationRequestDto;
 import eu.babych.winelibrary.dto.UserRegistrationResponseDto;
@@ -7,6 +7,7 @@ import eu.babych.winelibrary.mapper.UserMapper;
 import eu.babych.winelibrary.model.Role;
 import eu.babych.winelibrary.model.User;
 import eu.babych.winelibrary.repository.UserRepository;
+import eu.babych.winelibrary.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

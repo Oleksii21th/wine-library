@@ -3,7 +3,7 @@ package eu.babych.winelibrary.dto.wine;
 import java.math.BigDecimal;
 import java.util.Set;
 
-public record WineResponseDto(
+public record WineFilterResponseDto(
         Long id,
         String name,
         BigDecimal price,
