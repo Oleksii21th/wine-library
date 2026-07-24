@@ -1,12 +1,5 @@
-package eu.babych.winelibrary.model;
+package eu.babych.winelibrary.model.wine;
 
-import eu.babych.winelibrary.model.winefilter.AgingType;
-import eu.babych.winelibrary.model.winefilter.Country;
-import eu.babych.winelibrary.model.winefilter.Grape;
-import eu.babych.winelibrary.model.winefilter.Producer;
-import eu.babych.winelibrary.model.winefilter.Region;
-import eu.babych.winelibrary.model.winefilter.SugarType;
-import eu.babych.winelibrary.model.winefilter.WineType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,9 +1,9 @@
 package eu.babych.winelibrary.service;
 
-import eu.babych.winelibrary.dto.ResetPasswordRequest;
+import eu.babych.winelibrary.dto.ResetPasswordRequestDto;
 
 public interface PasswordResetTokenService {
     void forgotPassword(String email);
 
-    void resetPassword(ResetPasswordRequest request);
+    void resetPassword(ResetPasswordRequestDto request);
 }

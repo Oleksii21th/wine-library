@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.model.winefilter;
+package eu.babych.winelibrary.model.wine;
 
 public enum AgingType {
     NONE,

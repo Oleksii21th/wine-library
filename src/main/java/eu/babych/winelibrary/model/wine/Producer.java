@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.model.winefilter;
+package eu.babych.winelibrary.model.wine;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,14 +10,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "grapes")
+@Table(name = "producers")
 @Getter
 @Setter
-public class Grape {
+public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 }
