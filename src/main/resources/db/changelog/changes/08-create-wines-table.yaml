@@ -1,0 +1,109 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-wines-table
+      author: Oleksii Babych
+      changes:
+        - createTable:
+            tableName: wines
+            columns:
+
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: description
+                  type: VARCHAR(1000)
+
+              - column:
+                  name: price
+                  type: DECIMAL(10,2)
+
+              - column:
+                  name: vintage
+                  type: INT
+
+              - column:
+                  name: alcohol
+                  type: DOUBLE
+
+              - column:
+                  name: volume
+                  type: DOUBLE
+
+              - column:
+                  name: wine_type
+                  type: VARCHAR(50)
+
+              - column:
+                  name: sugar_type
+                  type: VARCHAR(50)
+
+              - column:
+                  name: aging_type
+                  type: VARCHAR(50)
+
+              - column:
+                  name: country_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_wine_country
+                    references: countries(id)
+
+              - column:
+                  name: region_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_wine_region
+                    references: regions(id)
+
+              - column:
+                  name: producer_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_wine_producer
+                    references: producers(id)
+
+              - column:
+                  name: organic
+                  type: BOOLEAN
+
+              - column:
+                  name: alcohol_free
+                  type: BOOLEAN
+
+              - column:
+                  name: stock
+                  type: INT
+
+              - column:
+                  name: on_sale
+                  type: BOOLEAN
+
+              - column:
+                  name: is_new
+                  type: BOOLEAN
+
+              - column:
+                  name: image_url
+                  type: VARCHAR(500)
+
+              - column:
+                  name: is_deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false

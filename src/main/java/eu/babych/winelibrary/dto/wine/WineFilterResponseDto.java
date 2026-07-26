@@ -11,6 +11,5 @@ public record WineFilterResponseDto(
         String country,
         String region,
         Set<String> grapes,
-        String imageUrl
-) {
+        String imageUrl) {
 }
