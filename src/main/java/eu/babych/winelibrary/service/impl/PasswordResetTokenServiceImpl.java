@@ -1,6 +1,6 @@
-package eu.babych.winelibrary.service;
+package eu.babych.winelibrary.service.impl;
 
-import eu.babych.winelibrary.dto.ResetPasswordRequest;
+import eu.babych.winelibrary.dto.ResetPasswordRequestDto;
 import eu.babych.winelibrary.exception.badrequest.ExpiredTokenException;
 import eu.babych.winelibrary.exception.badrequest.InvalidTokenException;
 import eu.babych.winelibrary.exception.notfoundexception.UserNotFoundException;
@@ -8,6 +8,8 @@ import eu.babych.winelibrary.model.PasswordResetToken;
 import eu.babych.winelibrary.model.User;
 import eu.babych.winelibrary.repository.PasswordResetTokenRepository;
 import eu.babych.winelibrary.repository.UserRepository;
+import eu.babych.winelibrary.service.EmailService;
+import eu.babych.winelibrary.service.PasswordResetTokenService;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -55,7 +57,7 @@ public class PasswordResetTokenServiceImpl implements PasswordResetTokenService 
     }
 
     @Override
-    public void resetPassword(ResetPasswordRequest request) {
+    public void resetPassword(ResetPasswordRequestDto request) {
         PasswordResetToken token = passwordResetRepository.findByToken(request.token())
                 .orElseThrow(InvalidTokenException::new);
 

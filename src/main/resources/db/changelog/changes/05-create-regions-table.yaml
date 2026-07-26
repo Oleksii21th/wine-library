@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-regions-table
+      author: Oleksii Babych
+      changes:
+        - createTable:
+            tableName: regions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: country_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_region_country
+                    references: countries(id)

@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.service;
+package eu.babych.winelibrary.service.impl;
 
 import eu.babych.winelibrary.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

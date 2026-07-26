@@ -1,5 +1,6 @@
-package eu.babych.winelibrary.service;
+package eu.babych.winelibrary.service.impl;
 
+import eu.babych.winelibrary.service.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

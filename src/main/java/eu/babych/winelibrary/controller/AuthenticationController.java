@@ -1,7 +1,7 @@
 package eu.babych.winelibrary.controller;
 
-import eu.babych.winelibrary.dto.ForgotPasswordRequest;
-import eu.babych.winelibrary.dto.ResetPasswordRequest;
+import eu.babych.winelibrary.dto.ForgotPasswordRequestDto;
+import eu.babych.winelibrary.dto.ResetPasswordRequestDto;
 import eu.babych.winelibrary.dto.UserLoginRequestDto;
 import eu.babych.winelibrary.dto.UserLoginResponseDto;
 import eu.babych.winelibrary.dto.UserRegistrationRequestDto;
@@ -42,12 +42,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/forgot-password")
-    public void forgotPassword(@RequestBody ForgotPasswordRequest request) {
+    public void forgotPassword(@RequestBody ForgotPasswordRequestDto request) {
         passwordResetTokenService.forgotPassword(request.email());
     }
 
     @PostMapping("/reset-password")
-    public void resetPassword(@RequestBody ResetPasswordRequest request) {
+    public void resetPassword(@RequestBody ResetPasswordRequestDto request) {
         passwordResetTokenService.resetPassword(request);
     }
 }
