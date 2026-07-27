@@ -1,7 +1,9 @@
 package eu.babych.winelibrary.service.winefilter;
 
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
+import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
 import eu.babych.winelibrary.model.wine.Wine;
+import java.util.Locale;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +16,7 @@ public class WineSpecificationBuilder implements WineSearchSpecificationBuilder<
     }
 
     @Override
-    public Specification<Wine> build(WineFilterRequestDto dto) {
+    public Specification<Wine> buildFilter(WineFilterRequestDto dto) {
 
         Specification<Wine> spec = Specification.unrestricted();
 
@@ -27,5 +29,11 @@ public class WineSpecificationBuilder implements WineSearchSpecificationBuilder<
         }
 
         return spec;
+    }
+
+    @Override
+    public Specification<Wine> buildSearch(WineSearchRequestDto dto) {
+        return (root, query, cb) ->
+                cb.like(cb.lower(root.get("name")), "%" + dto.name().toLowerCase() + "%");
     }
 }
