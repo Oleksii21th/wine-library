@@ -3,7 +3,6 @@ package eu.babych.winelibrary.service.winefilter;
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
 import eu.babych.winelibrary.model.wine.Wine;
-import java.util.Locale;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
