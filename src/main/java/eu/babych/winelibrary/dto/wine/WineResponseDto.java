@@ -5,7 +5,7 @@ import eu.babych.winelibrary.model.wine.SugarType;
 import eu.babych.winelibrary.model.wine.WineType;
 import java.util.Set;
 
-public record WineFilterResponseDto(
+public record WineResponseDto(
         Long id,
         String name,
         String vintage,
