@@ -2,6 +2,7 @@ package eu.babych.winelibrary.service.impl;
 
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineResponseDto;
+import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
 import eu.babych.winelibrary.mapper.WineMapper;
 import eu.babych.winelibrary.model.wine.Wine;
 import eu.babych.winelibrary.repository.WineRepository;
@@ -32,10 +33,22 @@ public class WineServiceImpl implements WineService {
     public Page<WineResponseDto> findAll(WineFilterRequestDto requestDto,
                                          Pageable pageable) {
         Specification<Wine> specification =
-                specificationBuilder.build(requestDto);
+                specificationBuilder.buildFilter(requestDto);
 
-        Page<Wine> wine = repository.findAll(specification, pageable);
+        return findAllBySpecification(specification, pageable);
+    }
 
-        return wine.map(mapper::toDto);
+    @Override
+    public Page<WineResponseDto> search(WineSearchRequestDto searchDto, Pageable pageable) {
+        Specification<Wine> specification =
+                specificationBuilder.buildSearch(searchDto);
+
+        return findAllBySpecification(specification, pageable);
+    }
+
+    private Page<WineResponseDto> findAllBySpecification(Specification<Wine> specification,
+                                                         Pageable pageable) {
+        return repository.findAll(specification, pageable)
+                .map(mapper::toDto);
     }
 }
