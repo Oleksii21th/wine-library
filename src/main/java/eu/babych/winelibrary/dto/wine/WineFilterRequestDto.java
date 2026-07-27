@@ -3,26 +3,18 @@ package eu.babych.winelibrary.dto.wine;
 import eu.babych.winelibrary.model.wine.AgingType;
 import eu.babych.winelibrary.model.wine.SugarType;
 import eu.babych.winelibrary.model.wine.WineType;
-import java.math.BigDecimal;
 import java.util.Set;
 
 public record WineFilterRequestDto(
-        WineType wineType,
-        BigDecimal minPrice,
-        BigDecimal maxPrice,
-        Long countryId,
-        Long regionId,
+        Set<WineType> wineTypes,
+        Set<Long> countryIds,
+        Set<Long> regionIds,
+        Set<Long> producerIds,
         Set<Long> grapeIds,
-        Integer vintage,
-        SugarType sugarType,
+        Set<String> vintages,
+        Set<SugarType> sugarTypes,
+        Set<AgingType> agingTypes,
+        Set<String> volumes,
         Double minAlcohol,
-        Double maxAlcohol,
-        Long producerId,
-        Double volume,
-        AgingType agingType,
-        Boolean organic,
-        Boolean alcoholFree,
-        Boolean onSale,
-        Boolean isNew,
-        Boolean inStock) {
+        Double maxAlcohol) {
 }

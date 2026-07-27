@@ -7,19 +7,19 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WineTypeSpecificationProvider implements WineSpecificationProvider<Wine> {
+public class AgingTypeSpecificationProvider implements WineSpecificationProvider<Wine> {
     @Override
     public String getKey() {
-        return "wineTypes";
+        return "agingTypes";
     }
 
     @Override
     public Specification<Wine> getSpecification(WineFilterRequestDto dto) {
-        if (dto.wineTypes() == null || dto.wineTypes().isEmpty()) {
+        if (dto.agingTypes() == null || dto.agingTypes().isEmpty()) {
             return null;
         }
 
         return (root, query, cb) ->
-                root.get("wineType").in(dto.wineTypes());
+                root.get("agingType").in(dto.agingTypes());
     }
 }

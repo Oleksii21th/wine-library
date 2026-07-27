@@ -2,6 +2,11 @@ databaseChangeLog:
   - changeSet:
       id: create-grapes-table
       author: Oleksii Babych
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: grapes
       changes:
         - createTable:
             tableName: grapes
@@ -13,7 +18,6 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
-
               - column:
                   name: name
                   type: VARCHAR(255)

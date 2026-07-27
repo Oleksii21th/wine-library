@@ -10,16 +10,16 @@ import org.springframework.stereotype.Component;
 public class CountrySpecificationProvider implements WineSpecificationProvider<Wine> {
     @Override
     public String getKey() {
-        return "country";
+        return "countryIds";
     }
 
     @Override
     public Specification<Wine> getSpecification(WineFilterRequestDto dto) {
-        if (dto.countryId() == null) {
+        if (dto.countryIds() == null || dto.countryIds().isEmpty()) {
             return null;
         }
 
         return (root, query, cb) ->
-                cb.equal(root.get("country").get("id"), dto.countryId());
+                root.get("country").get("id").in(dto.countryIds());
     }
 }

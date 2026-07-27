@@ -7,19 +7,19 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MinPriceSpecificationProvider implements WineSpecificationProvider<Wine> {
+public class ProducerSpecificationProvider implements WineSpecificationProvider<Wine> {
     @Override
     public String getKey() {
-        return "minPrice";
+        return "producerIds";
     }
 
     @Override
     public Specification<Wine> getSpecification(WineFilterRequestDto dto) {
-        if (dto.minPrice() == null) {
+        if (dto.producerIds() == null || dto.producerIds().isEmpty()) {
             return null;
         }
 
         return (root, query, cb) ->
-                cb.greaterThanOrEqualTo(root.get("price"), dto.minPrice());
+                root.get("producer").get("id").in(dto.producerIds());
     }
 }

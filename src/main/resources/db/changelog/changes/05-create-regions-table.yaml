@@ -2,6 +2,11 @@ databaseChangeLog:
   - changeSet:
       id: create-regions-table
       author: Oleksii Babych
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: regions
       changes:
         - createTable:
             tableName: regions
@@ -13,13 +18,11 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
-
               - column:
                   name: name
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
-
               - column:
                   name: country_id
                   type: BIGINT

@@ -5,6 +5,7 @@ public enum WineType {
     WHITE,
     ROSE,
     SPARKLING,
+    ORANGE,
     DESSERT,
     FORTIFIED
 }
