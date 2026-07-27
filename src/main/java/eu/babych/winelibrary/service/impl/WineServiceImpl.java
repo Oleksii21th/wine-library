@@ -7,7 +7,6 @@ import eu.babych.winelibrary.model.wine.Wine;
 import eu.babych.winelibrary.repository.WineRepository;
 import eu.babych.winelibrary.service.WineService;
 import eu.babych.winelibrary.service.winefilter.WineSearchSpecificationBuilder;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -30,20 +29,13 @@ public class WineServiceImpl implements WineService {
     }
 
     @Override
-    public List<WineResponseDto> search(WineFilterRequestDto requestDto) {
-
+    public Page<WineResponseDto> findAll(WineFilterRequestDto requestDto,
+                                         Pageable pageable) {
         Specification<Wine> specification =
                 specificationBuilder.build(requestDto);
 
-        return repository.findAll(specification).stream().map(mapper::toDto).toList();
-    }
+        Page<Wine> wine = repository.findAll(specification, pageable);
 
-    @Override
-    public List<WineResponseDto> findAll(Pageable pageable) {
-        Page<Wine> wine = repository.findAll(pageable);
-
-        return wine.stream()
-                .map(mapper::toDto)
-                .toList();
+        return wine.map(mapper::toDto);
     }
 }
