@@ -3,7 +3,7 @@ package eu.babych.winelibrary.controller;
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineResponseDto;
 import eu.babych.winelibrary.service.WineService;
-import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +21,9 @@ public class WineController {
     }
 
     @PreAuthorize("hasAnyRole('USER','MANAGER')")
-    @GetMapping("/search")
-    public List<WineResponseDto> search(@ModelAttribute WineFilterRequestDto requestDto) {
-        return wineService.search(requestDto);
-    }
-
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @GetMapping
-    public List<WineResponseDto> findAll(Pageable pageable) {
-        return wineService.findAll(pageable);
+    public Page<WineResponseDto> findAll(@ModelAttribute WineFilterRequestDto requestDto,
+                                         Pageable pageable) {
+        return wineService.findAll(requestDto, pageable);
     }
 }
