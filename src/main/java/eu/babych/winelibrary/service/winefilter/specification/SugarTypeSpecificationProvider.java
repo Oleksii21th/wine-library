@@ -7,19 +7,19 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MaxPriceSpecificationProvider implements WineSpecificationProvider<Wine> {
+public class SugarTypeSpecificationProvider implements WineSpecificationProvider<Wine> {
     @Override
     public String getKey() {
-        return "maxPrice";
+        return "sugarTypes";
     }
 
     @Override
     public Specification<Wine> getSpecification(WineFilterRequestDto dto) {
-        if (dto.maxPrice() == null) {
+        if (dto.sugarTypes() == null || dto.sugarTypes().isEmpty()) {
             return null;
         }
 
         return (root, query, cb) ->
-                cb.lessThanOrEqualTo(root.get("price"), dto.maxPrice());
+                root.get("sugarType").in(dto.sugarTypes());
     }
 }

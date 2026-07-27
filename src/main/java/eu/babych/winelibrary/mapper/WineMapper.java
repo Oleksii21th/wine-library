@@ -13,9 +13,14 @@ import org.mapstruct.Mapping;
 public interface WineMapper {
     @Mapping(target = "country", source = "country.name")
     @Mapping(target = "region", source = "region.name")
+    @Mapping(target = "producer", source = "producer.name")
     WineFilterResponseDto toDto(Wine wine);
 
     default Set<String> mapGrapes(Set<Grape> grapes) {
+        if (grapes == null) {
+            return Set.of();
+        }
+
         return grapes.stream()
                 .map(Grape::getName)
                 .collect(Collectors.toSet());

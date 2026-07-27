@@ -12,7 +12,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.math.BigDecimal;
 import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -36,13 +35,11 @@ public class Wine {
     @Column(length = 1000)
     private String description;
 
-    private BigDecimal price;
-
-    private Integer vintage;
+    private String vintage;
 
     private Double alcohol;
 
-    private Double volume;
+    private String volume;
 
     @Enumerated(EnumType.STRING)
     private WineType wineType;
@@ -70,16 +67,6 @@ public class Wine {
             joinColumns = @JoinColumn(name = "wine_id"),
             inverseJoinColumns = @JoinColumn(name = "grape_id"))
     private Set<Grape> grapes;
-
-    private Boolean organic;
-
-    private Boolean alcoholFree;
-
-    private Integer stock;
-
-    private Boolean onSale;
-
-    private Boolean isNew;
 
     private String imageUrl;
 

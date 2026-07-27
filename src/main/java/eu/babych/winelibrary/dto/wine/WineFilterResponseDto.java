@@ -1,15 +1,22 @@
 package eu.babych.winelibrary.dto.wine;
 
-import java.math.BigDecimal;
+import eu.babych.winelibrary.model.wine.AgingType;
+import eu.babych.winelibrary.model.wine.SugarType;
+import eu.babych.winelibrary.model.wine.WineType;
 import java.util.Set;
 
 public record WineFilterResponseDto(
         Long id,
         String name,
-        BigDecimal price,
-        Integer vintage,
+        String vintage,
+        Double alcohol,
+        String volume,
+        WineType wineType,
+        SugarType sugarType,
+        AgingType agingType,
         String country,
         String region,
+        String producer,
         Set<String> grapes,
         String imageUrl) {
 }

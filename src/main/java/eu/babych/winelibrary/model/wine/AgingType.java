@@ -1,6 +1,9 @@
 package eu.babych.winelibrary.model.wine;
 
 public enum AgingType {
-    NONE,
-    OAK_BARREL
+    UNAGED,
+    OAK_BARREL,
+    BOTTLE_LEES,
+    QVEVRI,
+    SOLERA
 }
