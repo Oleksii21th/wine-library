@@ -4,6 +4,7 @@ import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineResponseDto;
 import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
 import eu.babych.winelibrary.service.WineService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +22,7 @@ public class WineController {
         this.wineService = wineService;
     }
 
+    @Operation(summary = "Get all wines with filtering and pagination")
     @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @GetMapping
     public Page<WineResponseDto> findAll(@ModelAttribute WineFilterRequestDto requestDto,
@@ -28,6 +30,7 @@ public class WineController {
         return wineService.findAll(requestDto, pageable);
     }
 
+    @Operation(summary = "Search wines by name field with pagination")
     @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @GetMapping("/search")
     public Page<WineResponseDto> search(@ModelAttribute WineSearchRequestDto searchDto,
