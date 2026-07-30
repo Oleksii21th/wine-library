@@ -9,6 +9,7 @@ import eu.babych.winelibrary.dto.UserRegistrationResponseDto;
 import eu.babych.winelibrary.security.AuthenticationService;
 import eu.babych.winelibrary.service.PasswordResetTokenService;
 import eu.babych.winelibrary.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,22 +31,26 @@ public class AuthenticationController {
         this.passwordResetTokenService = passwordResetTokenService;
     }
 
+    @Operation(summary = "Authenticate a user and return a JWT token")
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto loginRequest) {
         return authenticationService.authenticateUser(loginRequest);
     }
 
+    @Operation(summary = "Register a new user")
     @PostMapping("/register")
     public UserRegistrationResponseDto register(@RequestBody @Valid
                                                 UserRegistrationRequestDto registrationRequest) {
         return userService.register(registrationRequest);
     }
 
+    @Operation(summary = "Send a password reset email")
     @PostMapping("/forgot-password")
     public void forgotPassword(@RequestBody ForgotPasswordRequestDto request) {
         passwordResetTokenService.forgotPassword(request.email());
     }
 
+    @Operation(summary = "Reset a user password")
     @PostMapping("/reset-password")
     public void resetPassword(@RequestBody ResetPasswordRequestDto request) {
         passwordResetTokenService.resetPassword(request);
