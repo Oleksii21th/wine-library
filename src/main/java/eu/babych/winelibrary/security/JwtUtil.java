@@ -1,5 +1,6 @@
 package eu.babych.winelibrary.security;
 
+import eu.babych.winelibrary.model.User;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -9,7 +10,6 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,10 +28,11 @@ public class JwtUtil {
     }
 
     public String generateToken(Authentication authentication) {
-        UserDetails user = (UserDetails) authentication.getPrincipal();
+        User user = (User) authentication.getPrincipal();
 
         return Jwts.builder()
                 .subject(user.getUsername())
+                .claim("fullName", user.getFullName())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .signWith(key)
