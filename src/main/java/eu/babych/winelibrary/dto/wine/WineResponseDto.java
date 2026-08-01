@@ -8,6 +8,7 @@ import java.util.Set;
 public record WineResponseDto(
         Long id,
         String name,
+        String description,
         String vintage,
         Double alcohol,
         String volume,
