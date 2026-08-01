@@ -16,7 +16,6 @@ public class WineSpecificationBuilder implements WineSearchSpecificationBuilder<
 
     @Override
     public Specification<Wine> buildFilter(WineFilterRequestDto dto) {
-
         Specification<Wine> spec = Specification.unrestricted();
 
         for (WineSpecificationProvider<Wine> provider : manager.getProviders()) {
