@@ -1,6 +1,7 @@
 package eu.babych.winelibrary.controller;
 
 import eu.babych.winelibrary.dto.ForgotPasswordRequestDto;
+import eu.babych.winelibrary.dto.LogoutRequestDto;
 import eu.babych.winelibrary.dto.ResetPasswordRequestDto;
 import eu.babych.winelibrary.dto.UserLoginRequestDto;
 import eu.babych.winelibrary.dto.UserLoginResponseDto;
@@ -35,6 +36,12 @@ public class AuthenticationController {
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto loginRequest) {
         return authenticationService.authenticateUser(loginRequest);
+    }
+
+    @Operation(summary = "Sign out a user and revoke refresh token")
+    @PostMapping("/logout")
+    public void logout(@RequestBody LogoutRequestDto request) {
+        authenticationService.logout(request.refreshToken());
     }
 
     @Operation(summary = "Register a new user")
