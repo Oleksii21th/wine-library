@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface WineService {
+    WineResponseDto findById(Long id);
+
     Page<WineResponseDto> findAll(WineFilterRequestDto requestDto,
                                   Pageable pageable);
 

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,13 @@ public class WineController {
 
     public WineController(WineService wineService) {
         this.wineService = wineService;
+    }
+
+    @Operation(summary = "Get wine by ID")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @GetMapping("/{id}")
+    public WineResponseDto findById(@PathVariable Long id) {
+        return wineService.findById(id);
     }
 
     @Operation(summary = "Get all wines with filtering and pagination")

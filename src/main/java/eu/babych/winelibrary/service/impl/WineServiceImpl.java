@@ -3,6 +3,7 @@ package eu.babych.winelibrary.service.impl;
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineResponseDto;
 import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
+import eu.babych.winelibrary.exception.notfoundexception.WineNotFoundException;
 import eu.babych.winelibrary.mapper.WineMapper;
 import eu.babych.winelibrary.model.wine.Wine;
 import eu.babych.winelibrary.repository.WineRepository;
@@ -27,6 +28,14 @@ public class WineServiceImpl implements WineService {
         this.mapper = mapper;
         this.repository = repository;
         this.specificationBuilder = specificationBuilder;
+    }
+
+    @Override
+    public WineResponseDto findById(Long id) {
+        Wine wine = repository.findById(id)
+                .orElseThrow(() -> new WineNotFoundException(id));
+
+        return mapper.toDto(wine);
     }
 
     @Override
