@@ -3,7 +3,7 @@ package eu.babych.winelibrary.service.impl;
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineResponseDto;
 import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
-import eu.babych.winelibrary.exception.notfoundexception.WineNotFoundException;
+import eu.babych.winelibrary.exception.notfound.WineNotFoundException;
 import eu.babych.winelibrary.mapper.WineMapper;
 import eu.babych.winelibrary.model.wine.Wine;
 import eu.babych.winelibrary.repository.WineRepository;
