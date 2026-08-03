@@ -2,7 +2,7 @@ package eu.babych.winelibrary.service.impl;
 
 import eu.babych.winelibrary.dto.UserRegistrationRequestDto;
 import eu.babych.winelibrary.dto.UserRegistrationResponseDto;
-import eu.babych.winelibrary.exception.UserAlreadyExistsRegistrationException;
+import eu.babych.winelibrary.exception.badrequest.UserAlreadyExistsRegistrationException;
 import eu.babych.winelibrary.mapper.UserMapper;
 import eu.babych.winelibrary.model.Role;
 import eu.babych.winelibrary.model.User;

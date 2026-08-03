@@ -1,7 +1,8 @@
 package eu.babych.winelibrary.exception;
 
+import eu.babych.winelibrary.exception.authentication.LoginFailedException;
 import eu.babych.winelibrary.exception.badrequest.BadRequestException;
-import eu.babych.winelibrary.exception.notfoundexception.EntityNotFoundException;
+import eu.babych.winelibrary.exception.notfound.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -58,15 +58,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({BadRequestException.class})
     protected ResponseEntity<Object> handleBadRequest(BadRequestException ex) {
         return buildErrorResponse(ex, HttpStatus.BAD_REQUEST);
-    }
-
-    private String getErrorMessage(ObjectError objectError) {
-        if (objectError instanceof FieldError fieldError) {
-            String field = fieldError.getField();
-            String defaultMessage = objectError.getDefaultMessage();
-            return field + " " + defaultMessage;
-        }
-        return objectError.getDefaultMessage();
     }
 
     private ResponseEntity<Object> buildErrorResponse(Exception ex, HttpStatus status) {

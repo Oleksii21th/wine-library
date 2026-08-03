@@ -1,7 +1,0 @@
-package eu.babych.winelibrary.exception.notfoundexception;
-
-public class EntityNotFoundException extends RuntimeException {
-    public EntityNotFoundException(String message) {
-        super(message);
-    }
-}

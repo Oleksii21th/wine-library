@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.exception;
+package eu.babych.winelibrary.exception.authentication;
 
 public class LoginFailedException extends RuntimeException {
     public LoginFailedException() {
