@@ -1,8 +1,8 @@
 package eu.babych.winelibrary.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.babych.winelibrary.exception.authentication.ExpiredJWTTokenException;
-import eu.babych.winelibrary.exception.authentication.InvalidJWTTokenException;
+import eu.babych.winelibrary.exception.authentication.ExpiredJwtTokenException;
+import eu.babych.winelibrary.exception.authentication.InvalidJwtTokenException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,7 +60,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
             filterChain.doFilter(request, response);
-        } catch (ExpiredJWTTokenException | InvalidJWTTokenException e) {
+        } catch (ExpiredJwtTokenException | InvalidJwtTokenException e) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 

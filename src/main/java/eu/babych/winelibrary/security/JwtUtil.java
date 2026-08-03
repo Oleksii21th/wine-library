@@ -1,7 +1,7 @@
 package eu.babych.winelibrary.security;
 
-import eu.babych.winelibrary.exception.authentication.ExpiredJWTTokenException;
-import eu.babych.winelibrary.exception.authentication.InvalidJWTTokenException;
+import eu.babych.winelibrary.exception.authentication.ExpiredJwtTokenException;
+import eu.babych.winelibrary.exception.authentication.InvalidJwtTokenException;
 import eu.babych.winelibrary.model.User;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
@@ -58,9 +58,9 @@ public class JwtUtil {
                     .build()
                     .parseSignedClaims(token);
         } catch (ExpiredJwtException e) {
-            throw new ExpiredJWTTokenException();
+            throw new ExpiredJwtTokenException();
         } catch (JwtException | IllegalArgumentException e) {
-            throw new InvalidJWTTokenException();
+            throw new InvalidJwtTokenException();
         }
     }
 }

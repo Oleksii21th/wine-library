@@ -1,7 +1,7 @@
 package eu.babych.winelibrary.exception.authentication;
 
-public class ExpiredJWTTokenException extends RuntimeException {
-    public ExpiredJWTTokenException() {
+public class ExpiredJwtTokenException extends RuntimeException {
+    public ExpiredJwtTokenException() {
         super("Your session has expired. Please log in again");
     }
 }

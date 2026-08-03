@@ -1,7 +1,7 @@
 package eu.babych.winelibrary.exception.authentication;
 
-public class InvalidJWTTokenException extends RuntimeException {
-    public InvalidJWTTokenException() {
+public class InvalidJwtTokenException extends RuntimeException {
+    public InvalidJwtTokenException() {
         super("Invalid authentication token");
     }
 }
