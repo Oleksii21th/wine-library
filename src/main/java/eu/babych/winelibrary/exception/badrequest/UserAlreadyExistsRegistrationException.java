@@ -1,6 +1,4 @@
-package eu.babych.winelibrary.exception;
-
-import eu.babych.winelibrary.exception.badrequest.BadRequestException;
+package eu.babych.winelibrary.exception.badrequest;
 
 public class UserAlreadyExistsRegistrationException extends BadRequestException {
     public UserAlreadyExistsRegistrationException(String email) {

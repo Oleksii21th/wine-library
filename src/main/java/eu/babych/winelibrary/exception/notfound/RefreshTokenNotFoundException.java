@@ -1,4 +1,4 @@
-package eu.babych.winelibrary.exception.notfoundexception;
+package eu.babych.winelibrary.exception.notfound;
 
 public class RefreshTokenNotFoundException extends EntityNotFoundException {
     public RefreshTokenNotFoundException() {

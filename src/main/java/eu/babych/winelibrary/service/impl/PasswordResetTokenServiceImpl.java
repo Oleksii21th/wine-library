@@ -2,8 +2,8 @@ package eu.babych.winelibrary.service.impl;
 
 import eu.babych.winelibrary.dto.ResetPasswordRequestDto;
 import eu.babych.winelibrary.exception.badrequest.ExpiredTokenException;
-import eu.babych.winelibrary.exception.badrequest.InvalidTokenException;
-import eu.babych.winelibrary.exception.notfoundexception.UserNotFoundException;
+import eu.babych.winelibrary.exception.badrequest.InvalidPasswordResetTokenException;
+import eu.babych.winelibrary.exception.notfound.UserNotFoundException;
 import eu.babych.winelibrary.model.PasswordResetToken;
 import eu.babych.winelibrary.model.User;
 import eu.babych.winelibrary.repository.PasswordResetTokenRepository;
@@ -59,7 +59,7 @@ public class PasswordResetTokenServiceImpl implements PasswordResetTokenService 
     @Override
     public void resetPassword(ResetPasswordRequestDto request) {
         PasswordResetToken token = passwordResetRepository.findByToken(request.token())
-                .orElseThrow(InvalidTokenException::new);
+                .orElseThrow(InvalidPasswordResetTokenException::new);
 
         if (token.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new ExpiredTokenException();

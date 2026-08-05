@@ -1,7 +1,7 @@
 package eu.babych.winelibrary.exception.badrequest;
 
-public class BadRequestException extends RuntimeException {
-    public BadRequestException(String message) {
+public abstract class BadRequestException extends RuntimeException {
+    protected BadRequestException(String message) {
         super(message);
     }
 }

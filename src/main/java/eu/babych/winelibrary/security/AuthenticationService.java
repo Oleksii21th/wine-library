@@ -2,10 +2,10 @@ package eu.babych.winelibrary.security;
 
 import eu.babych.winelibrary.dto.UserLoginRequestDto;
 import eu.babych.winelibrary.dto.UserLoginResponseDto;
-import eu.babych.winelibrary.exception.LoginFailedException;
+import eu.babych.winelibrary.exception.authentication.LoginFailedException;
 import eu.babych.winelibrary.exception.badrequest.RefreshTokenExpiredException;
 import eu.babych.winelibrary.exception.badrequest.RefreshTokenRevokedException;
-import eu.babych.winelibrary.exception.notfoundexception.RefreshTokenNotFoundException;
+import eu.babych.winelibrary.exception.notfound.RefreshTokenNotFoundException;
 import eu.babych.winelibrary.model.RefreshToken;
 import eu.babych.winelibrary.model.User;
 import eu.babych.winelibrary.repository.RefreshTokenRepository;
