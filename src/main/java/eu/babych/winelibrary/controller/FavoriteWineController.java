@@ -2,8 +2,10 @@ package eu.babych.winelibrary.controller;
 
 import eu.babych.winelibrary.dto.favoritewine.FavoriteWineResponseDto;
 import eu.babych.winelibrary.service.FavoriteWineService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,25 +23,35 @@ public class FavoriteWineController {
         this.favoriteWineService = favoriteWineService;
     }
 
+    @Operation(summary = "Get current user's favorite wines")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @GetMapping
     public Page<FavoriteWineResponseDto> findAll(Authentication authentication,
                                                  Pageable pageable) {
         return favoriteWineService.findAllByUser(authentication, pageable);
     }
 
+    @Operation(summary = "Add wine to current user's favorites")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @PostMapping("/{wineId}")
     public FavoriteWineResponseDto save(Authentication authentication,
                                         @PathVariable Long wineId) {
         return favoriteWineService.save(authentication, wineId);
     }
 
+    @Operation(summary = "Remove wine from current user's favorites")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @DeleteMapping("/{wineId}")
-    public void delete(Authentication authentication, @PathVariable Long wineId) {
+    public void delete(Authentication authentication,
+                       @PathVariable Long wineId) {
         favoriteWineService.delete(authentication, wineId);
     }
 
+    @Operation(summary = "Check if wine is in current user's favorites")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
     @GetMapping("/{wineId}")
-    public boolean isFavorite(Authentication authentication, @PathVariable Long wineId) {
+    public boolean isFavorite(Authentication authentication,
+                              @PathVariable Long wineId) {
         return favoriteWineService.isFavorite(authentication, wineId);
     }
 }
