@@ -54,5 +54,12 @@ public class FavoriteWineController {
                               @PathVariable Long wineId) {
         return favoriteWineService.isFavorite(authentication, wineId);
     }
+
+    @Operation(summary = "Returns the number of favorite wines for the authenticated user")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @GetMapping("/count")
+    public long countFavoriteWines(Authentication authentication) {
+        return favoriteWineService.countFavoriteWines(authentication);
+    }
 }
 
