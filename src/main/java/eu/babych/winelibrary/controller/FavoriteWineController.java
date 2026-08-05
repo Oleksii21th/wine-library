@@ -61,5 +61,13 @@ public class FavoriteWineController {
     public long countFavoriteWines(Authentication authentication) {
         return favoriteWineService.countFavoriteWines(authentication);
     }
+
+    @Operation(summary = "Returns favorite wines added within the last 30 days")
+    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @GetMapping("/recent")
+    public Page<FavoriteWineResponseDto> findRecentFavoriteWines(Authentication authentication,
+                                                                 Pageable pageable) {
+        return favoriteWineService.findRecentFavoriteWines(authentication, pageable);
+    }
 }
 

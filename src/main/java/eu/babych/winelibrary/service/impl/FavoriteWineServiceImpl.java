@@ -94,6 +94,16 @@ public class FavoriteWineServiceImpl implements FavoriteWineService {
         return favoriteWineRepository.countByUserId(userId);
     }
 
+    @Override
+    public Page<FavoriteWineResponseDto> findRecentFavoriteWines(Authentication authentication,
+                                                                 Pageable pageable) {
+        Long userId = getCurrentUser(authentication).getId();
+        LocalDateTime dateFrom = LocalDateTime.now().minusDays(30);
+
+        return favoriteWineRepository.findByUserIdAndAddedAtAfter(userId, dateFrom, pageable)
+                .map(favoriteWineMapper::toDto);
+    }
+
     private User getCurrentUser(Authentication authentication) {
         String email = authentication.getName();
 

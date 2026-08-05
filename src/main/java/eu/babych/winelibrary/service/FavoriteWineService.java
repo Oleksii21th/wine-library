@@ -16,4 +16,7 @@ public interface FavoriteWineService {
     boolean isFavorite(Authentication authentication, Long wineId);
 
     long countFavoriteWines(Authentication authentication);
+
+    Page<FavoriteWineResponseDto> findRecentFavoriteWines(Authentication authentication,
+                                                          Pageable pageable);
 }
