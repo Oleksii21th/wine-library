@@ -14,4 +14,6 @@ public interface FavoriteWineService {
     FavoriteWineResponseDto save(Authentication authentication, Long wineId);
 
     boolean isFavorite(Authentication authentication, Long wineId);
+
+    long countFavoriteWines(Authentication authentication);
 }

@@ -16,4 +16,6 @@ public interface FavoriteWineRepository extends JpaRepository<FavoriteWine, Long
     void deleteByUserAndWineId(User user, Long wineId);
 
     boolean existsByUserAndWineId(User user, Long wineId);
+
+    long countByUserId(Long userId);
 }

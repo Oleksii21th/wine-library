@@ -87,6 +87,13 @@ public class FavoriteWineServiceImpl implements FavoriteWineService {
         return favoriteWineRepository.existsByUserAndWineId(user, wineId);
     }
 
+    @Override
+    public long countFavoriteWines(Authentication authentication) {
+        Long userId = getCurrentUser(authentication).getId();
+
+        return favoriteWineRepository.countByUserId(userId);
+    }
+
     private User getCurrentUser(Authentication authentication) {
         String email = authentication.getName();
 
