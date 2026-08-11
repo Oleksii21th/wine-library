@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WineRepository extends JpaRepository<Wine, Long>, JpaSpecificationExecutor<Wine> {
-    @EntityGraph(attributePaths = {"country", "region", "producer", "grapes"})
+    @EntityGraph(attributePaths = {"country", "region", "producer", "grapes", "foods"})
     Page<Wine> findAll(Specification<Wine> specification, Pageable pageable);
 }
