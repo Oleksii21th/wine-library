@@ -11,10 +11,10 @@ import org.mapstruct.Mapping;
 
 @Mapper(config = MapperConfig.class)
 public interface WineMapper {
-    @Mapping(target = "country", source = "country.name")
-    @Mapping(target = "region", source = "region.name")
-    @Mapping(target = "producer", source = "producer.name")
-    WineResponseDto toDto(Wine wine);
+    @Mapping(target = "country", source = "wine.country.name")
+    @Mapping(target = "region", source = "wine.region.name")
+    @Mapping(target = "producer", source = "wine.producer.name")
+    WineResponseDto toDto(Wine wine, boolean favorite);
 
     default Set<String> mapGrapes(Set<Grape> grapes) {
         if (grapes == null) {

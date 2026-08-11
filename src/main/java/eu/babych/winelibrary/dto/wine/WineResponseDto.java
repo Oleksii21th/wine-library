@@ -22,5 +22,6 @@ public record WineResponseDto(
         String region,
         String producer,
         Set<String> grapes,
+        boolean favorite,
         String imageUrl) {
 }

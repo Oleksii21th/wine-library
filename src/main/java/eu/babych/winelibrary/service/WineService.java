@@ -5,13 +5,16 @@ import eu.babych.winelibrary.dto.wine.WineResponseDto;
 import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 
 public interface WineService {
-    WineResponseDto findById(Long id);
+    WineResponseDto findById(Long id, Authentication authentication);
 
     Page<WineResponseDto> findAll(WineFilterRequestDto requestDto,
-                                  Pageable pageable);
+                                  Pageable pageable,
+                                  Authentication authentication);
 
     Page<WineResponseDto> search(WineSearchRequestDto searchDto,
-                                 Pageable pageable);
+                                 Pageable pageable,
+                                 Authentication authentication);
 }
