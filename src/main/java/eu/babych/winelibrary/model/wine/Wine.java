@@ -42,6 +42,8 @@ public class Wine {
 
     private String volume;
 
+    private Long price;
+
     @Enumerated(EnumType.STRING)
     private WineType wineType;
 
@@ -50,6 +52,12 @@ public class Wine {
 
     @Enumerated(EnumType.STRING)
     private AgingType agingType;
+
+    @ManyToMany
+    @JoinTable(name = "wine_foods",
+            joinColumns = @JoinColumn(name = "wine_id"),
+            inverseJoinColumns = @JoinColumn(name = "food_id"))
+    private Set<Food> foods;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
