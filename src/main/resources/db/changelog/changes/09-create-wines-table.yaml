@@ -36,6 +36,9 @@ databaseChangeLog:
                   name: volume
                   type: VARCHAR(20)
               - column:
+                  name: price
+                  type: BIGINT
+              - column:
                   name: wine_type
                   type: VARCHAR(50)
               - column:
