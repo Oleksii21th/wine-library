@@ -1,8 +1,10 @@
 package eu.babych.winelibrary.service.winefilter.specification;
 
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
+import eu.babych.winelibrary.model.wine.Food;
 import eu.babych.winelibrary.model.wine.Wine;
 import eu.babych.winelibrary.service.winefilter.WineSpecificationProvider;
+import jakarta.persistence.criteria.Join;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,10 @@ public class FoodSpecificationProvider implements WineSpecificationProvider<Wine
             return null;
         }
 
-        return (root, query, cb) ->
-                root.get("food").in(dto.foods());
+        return (root, query, cb) -> {
+            Join<Wine, Food> foodJoin = root.join("foods");
+
+            return foodJoin.get("name").in(dto.foods());
+        };
     }
 }

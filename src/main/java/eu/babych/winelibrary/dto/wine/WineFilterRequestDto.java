@@ -16,7 +16,7 @@ public record WineFilterRequestDto(
         Set<SugarType> sugarTypes,
         Set<AgingType> agingTypes,
         Set<String> volumes,
-        Set<Food> foods,
+        Set<String> foods,
         Double minAlcohol,
         Double maxAlcohol,
         Long minPrice,
