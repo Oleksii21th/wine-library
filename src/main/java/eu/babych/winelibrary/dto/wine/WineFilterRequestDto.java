@@ -1,7 +1,6 @@
 package eu.babych.winelibrary.dto.wine;
 
 import eu.babych.winelibrary.model.wine.AgingType;
-import eu.babych.winelibrary.model.wine.Food;
 import eu.babych.winelibrary.model.wine.SugarType;
 import eu.babych.winelibrary.model.wine.WineType;
 import java.util.Set;
@@ -16,7 +15,7 @@ public record WineFilterRequestDto(
         Set<SugarType> sugarTypes,
         Set<AgingType> agingTypes,
         Set<String> volumes,
-        Set<Food> foods,
+        Set<String> foods,
         Double minAlcohol,
         Double maxAlcohol,
         Long minPrice,
