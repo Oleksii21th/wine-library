@@ -13,9 +13,9 @@ import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface WineMapper {
-    @Mapping(target = "country", source = "country.name")
-    @Mapping(target = "region", source = "region.name")
-    @Mapping(target = "producer", source = "producer.name")
+    @Mapping(target = "country", source = "wine.country.name")
+    @Mapping(target = "region", source = "wine.region.name")
+    @Mapping(target = "producer", source = "wine.producer.name")
     WineResponseDto toDto(Wine wine, boolean favorite);
 
     @Named("favoriteWine")
