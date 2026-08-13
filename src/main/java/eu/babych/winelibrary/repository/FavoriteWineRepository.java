@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FavoriteWineRepository extends JpaRepository<FavoriteWine, Long> {
-    @EntityGraph(attributePaths = {"wine"})
+    @EntityGraph(attributePaths = {"wine", "wine.country", "wine.region", "wine.producer"})
     Page<FavoriteWine> findAllByUserId(Long userId, Pageable pageable);
 
     void deleteByUserAndWineId(User user, Long wineId);

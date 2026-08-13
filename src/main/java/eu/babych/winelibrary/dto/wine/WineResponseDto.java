@@ -1,7 +1,6 @@
 package eu.babych.winelibrary.dto.wine;
 
 import eu.babych.winelibrary.model.wine.AgingType;
-import eu.babych.winelibrary.model.wine.Food;
 import eu.babych.winelibrary.model.wine.SugarType;
 import eu.babych.winelibrary.model.wine.WineType;
 import java.util.Set;
@@ -17,7 +16,7 @@ public record WineResponseDto(
         WineType wineType,
         SugarType sugarType,
         AgingType agingType,
-        Set<Food> foods,
+        Set<String> foods,
         String country,
         String region,
         String producer,
