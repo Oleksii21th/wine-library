@@ -17,6 +17,7 @@ import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -54,6 +55,7 @@ public class Wine {
     private AgingType agingType;
 
     @ManyToMany
+    @BatchSize(size = 20)
     @JoinTable(name = "wine_foods",
             joinColumns = @JoinColumn(name = "wine_id"),
             inverseJoinColumns = @JoinColumn(name = "food_id"))
@@ -72,6 +74,7 @@ public class Wine {
     private Producer producer;
 
     @ManyToMany
+    @BatchSize(size = 20)
     @JoinTable(name = "wine_grapes",
             joinColumns = @JoinColumn(name = "wine_id"),
             inverseJoinColumns = @JoinColumn(name = "grape_id"))
