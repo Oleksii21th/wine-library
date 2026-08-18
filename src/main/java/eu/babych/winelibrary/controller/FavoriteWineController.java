@@ -24,7 +24,7 @@ public class FavoriteWineController {
     }
 
     @Operation(summary = "Get current user's favorite wines")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping
     public Page<FavoriteWineResponseDto> findAll(Authentication authentication,
                                                  Pageable pageable) {
@@ -32,7 +32,7 @@ public class FavoriteWineController {
     }
 
     @Operation(summary = "Add wine to current user's favorites")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @PostMapping("/{wineId}")
     public FavoriteWineResponseDto save(Authentication authentication,
                                         @PathVariable Long wineId) {
@@ -40,7 +40,7 @@ public class FavoriteWineController {
     }
 
     @Operation(summary = "Remove wine from current user's favorites")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @DeleteMapping("/{wineId}")
     public void delete(Authentication authentication,
                        @PathVariable Long wineId) {
@@ -48,7 +48,7 @@ public class FavoriteWineController {
     }
 
     @Operation(summary = "Check if wine is in current user's favorites")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping("/{wineId}")
     public boolean isFavorite(Authentication authentication,
                               @PathVariable Long wineId) {
@@ -56,14 +56,14 @@ public class FavoriteWineController {
     }
 
     @Operation(summary = "Returns the number of favorite wines for the authenticated user")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping("/count")
     public long countFavoriteWines(Authentication authentication) {
         return favoriteWineService.countFavoriteWines(authentication);
     }
 
     @Operation(summary = "Returns favorite wines added within the last 30 days")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping("/recent")
     public Page<FavoriteWineResponseDto> findRecentFavoriteWines(Authentication authentication,
                                                                  Pageable pageable) {
