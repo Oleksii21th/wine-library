@@ -12,6 +12,7 @@ import eu.babych.winelibrary.repository.UserRepository;
 import eu.babych.winelibrary.repository.WineRepository;
 import eu.babych.winelibrary.service.WineService;
 import eu.babych.winelibrary.service.winefilter.WineSearchSpecificationBuilder;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 import org.springframework.data.domain.Page;
@@ -42,6 +43,7 @@ public class WineServiceImpl implements WineService {
         this.specificationBuilder = specificationBuilder;
     }
 
+    @Transactional
     @Override
     public WineResponseDto findById(Long id, Authentication authentication) {
         Wine wine = wineRepository.findById(id)
@@ -55,6 +57,7 @@ public class WineServiceImpl implements WineService {
         return mapper.toDto(wine, favorite);
     }
 
+    @Transactional
     @Override
     public Page<WineResponseDto> findAll(WineFilterRequestDto requestDto,
                                          Pageable pageable,
@@ -65,6 +68,7 @@ public class WineServiceImpl implements WineService {
         return findAllBySpecification(specification, pageable, authentication);
     }
 
+    @Transactional
     @Override
     public Page<WineResponseDto> search(WineSearchRequestDto searchDto,
                                         Pageable pageable,
