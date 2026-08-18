@@ -25,14 +25,14 @@ public class WineController {
     }
 
     @Operation(summary = "Get wine by ID")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping("/{id}")
     public WineResponseDto findById(@PathVariable Long id, Authentication authentication) {
         return wineService.findById(id, authentication);
     }
 
     @Operation(summary = "Get all wines with filtering and pagination")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping
     public Page<WineResponseDto> findAll(@ModelAttribute WineFilterRequestDto requestDto,
                                          Pageable pageable,
@@ -41,7 +41,7 @@ public class WineController {
     }
 
     @Operation(summary = "Search wines by name field with pagination")
-    @PreAuthorize("hasAnyRole('USER','MANAGER')")
+    @PreAuthorize("hasAnyRole('CUSTOMER','MANAGER')")
     @GetMapping("/search")
     public Page<WineResponseDto> search(@ModelAttribute WineSearchRequestDto searchDto,
                                         Pageable pageable,
