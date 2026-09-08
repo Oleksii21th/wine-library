@@ -70,4 +70,3 @@ public class FavoriteWineController {
         return favoriteWineService.findRecentFavoriteWines(authentication, pageable);
     }
 }
-

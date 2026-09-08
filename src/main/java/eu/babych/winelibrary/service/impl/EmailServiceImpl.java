@@ -11,6 +11,9 @@ public class EmailServiceImpl implements EmailService {
     @Value("${forgot-password.token.expiration}")
     private Integer forgotPasswordTokenExpiration;
 
+    @Value("${forgot-password.from}")
+    private String from;
+
     private final JavaMailSender mailSender;
 
     public EmailServiceImpl(JavaMailSender mailSender) {
@@ -22,7 +25,7 @@ public class EmailServiceImpl implements EmailService {
         String link = "http://localhost:3000/reset-password?token=" + token;
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("redbul123450@wp.pl");
+        message.setFrom(from);
         message.setTo(to);
         message.setSubject("Reset Your Wine Library Password");
         message.setText("""
