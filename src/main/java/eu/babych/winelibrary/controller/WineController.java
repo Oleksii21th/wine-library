@@ -3,7 +3,10 @@ package eu.babych.winelibrary.controller;
 import eu.babych.winelibrary.dto.wine.WineFilterRequestDto;
 import eu.babych.winelibrary.dto.wine.WineResponseDto;
 import eu.babych.winelibrary.dto.wine.WineSearchRequestDto;
+import eu.babych.winelibrary.dto.winecalculator.WineCalculationRequest;
+import eu.babych.winelibrary.dto.winecalculator.WineCalculationResponse;
 import eu.babych.winelibrary.service.WineService;
+import eu.babych.winelibrary.service.calculator.WineCalculationServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/wines")
 public class WineController {
     private final WineService wineService;
+    private final WineCalculationServiceImpl calculationService;
 
-    public WineController(WineService wineService) {
+    public WineController(WineService wineService,
+                          WineCalculationServiceImpl calculationService) {
         this.wineService = wineService;
+        this.calculationService = calculationService;
     }
 
     @Operation(summary = "Get wine by ID")
@@ -47,5 +55,11 @@ public class WineController {
                                         Pageable pageable,
                                         Authentication authentication) {
         return wineService.search(searchDto, pageable, authentication);
+    }
+
+    @Operation(summary = "Calculates the recommended number of wine bottles")
+    @PostMapping("/calculate")
+    public WineCalculationResponse calculate(@RequestBody WineCalculationRequest request) {
+        return calculationService.calculate(request);
     }
 }
